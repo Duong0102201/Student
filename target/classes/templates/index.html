@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <title>Employee List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+    <h1>Manage Employee</h1>
+    <table class="table table-active">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Birthday</th>
+            <th>DepartmentName</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="em : ${employee}">
+            <td th:text="${em.empId}"></td>
+            <td th:text="${em.empName}"></td>
+            <td th:text="${em.age}"></td>
+            <td th:text="${em.sex}"></td>
+            <td th:text="${em.birthday}"></td>
+            <td th:text="${em.departmentName}"></td>
+            <td>
+                <a th:href="@{/edit?id={id}(id=${em.empId})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/delete?id={id}(id=${em.empId})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <a href="/add" class="btn btn-success">Add User</a>
+</div>
+</body>
+</html>
